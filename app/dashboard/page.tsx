@@ -7,7 +7,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
-const LEADS_TABLE = 'kyoto_reservations'
+const LEADS_TABLE = 'leads'
 const CLIENT_SLUG = 'kyoto'
 const ACCENT = '#dc2626'
 const ACCENT_TEXT = '#ffffff'
@@ -110,7 +110,7 @@ export default function Dashboard() {
     fetchLeads()
     fetchVenueStatus()
     const sub = supabase.channel('kyoto-reservations')
-      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: LEADS_TABLE },
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: LEADS_TABLE, filter: `client_slug=eq.${CLIENT_SLUG}` },
         (payload) => {
           setLeads(prev => [payload.new as Lead, ...prev])
           setStats(prev => ({ ...prev, today: prev.today + 1, total: prev.total + 1 }))
@@ -128,7 +128,7 @@ export default function Dashboard() {
   }
 
   async function fetchLeads() {
-    const { data } = await supabase.from(LEADS_TABLE).select('*').order('created_at', { ascending: false }).limit(200)
+    const { data } = await supabase.from(LEADS_TABLE).select('*').eq('client_slug', CLIENT_SLUG).order('created_at', { ascending: false }).limit(200)
     if (data) {
       setLeads(data)
       const today = new Date().toDateString()
