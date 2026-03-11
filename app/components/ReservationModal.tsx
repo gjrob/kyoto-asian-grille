@@ -76,8 +76,6 @@ export default function ReservationModal({ isOpen, onClose }: Props) {
             padding: '32px',
             width: '100%',
             maxWidth: '480px',
-            maxHeight: '90vh',
-            overflowY: 'auto',
             position: 'relative',
             boxShadow: '0 25px 60px rgba(0,0,0,0.6), 0 0 40px rgba(200,96,122,0.08)',
           }}

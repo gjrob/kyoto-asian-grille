@@ -7,9 +7,9 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
-const LEADS_TABLE = 'leads'
+const LEADS_TABLE = 'kyoto_reservations'
 const CLIENT_SLUG = 'kyoto'
-const ACCENT = '#dc2626'
+const ACCENT = '#c8607a'
 const ACCENT_TEXT = '#ffffff'
 
 interface Lead {
