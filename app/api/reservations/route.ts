@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
   }
 
   const { data, error } = await supabase
-    .from('reservations')
+    .from('kyoto_reservations')
     .insert({ name, email, phone, party_size, date, time, notes, client_slug: 'kyoto' })
     .select()
     .single()
