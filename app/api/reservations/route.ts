@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     .single())
 
   if (error && error.code === 'PGRST204' && /client_slug/.test(error.message)) {
-    console.warn('Column client_slug missing, retrying without it')
+    console.warn('Column client_slug missing, retrying without it');
     ({ data, error } = await supabase
       .from('kyoto_reservations')
       .insert({ name, email, phone, party_size, date, time, notes })
