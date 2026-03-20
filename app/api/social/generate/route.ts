@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
   // If no accounts connected yet, generate for facebook by default (for preview)
   const platforms: string[] =
     accounts && accounts.length > 0
-      ? [...new Set(accounts.map((a: { platform: string }) => a.platform))]
+      ? [...new Set(accounts.map((a: { platform: string }) => a.platform))] as string[]
       : ['facebook']
 
   // 3. Generate a post for each platform
