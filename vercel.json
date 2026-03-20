@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "crons": [
+    {
+      "path": "/api/social/generate",
+      "schedule": "0 9 * * 1,3,5"
+    },
+    {
+      "path": "/api/social/publish",
+      "schedule": "*/15 * * * *"
+    },
+    {
+      "path": "/api/social/analytics",
+      "schedule": "0 6 * * *"
+    }
+  ]
+}
